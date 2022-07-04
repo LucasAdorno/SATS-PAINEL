@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-satsbetaadmin-dev-183149-authRole",
+      "UnauthRoleArn": "arn:aws:iam::829601591318:role/amplify-satsbetaadmin-dev-183149-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::829601591318:role/amplify-satsbetaadmin-dev-183149-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-satsbetaadmin-dev-183149-deployment",
+      "UnauthRoleName": "amplify-satsbetaadmin-dev-183149-unauthRole",
+      "StackName": "amplify-satsbetaadmin-dev-183149",
+      "StackId": "arn:aws:cloudformation:us-east-1:829601591318:stack/amplify-satsbetaadmin-dev-183149/39105120-f985-11ec-9393-1253ca325ca3",
+      "AmplifyAppId": "d2hkcihympv5bl"
+    },
+    "categories": {
+      "auth": {
+        "satsbetaadminab162500": {
+          "userPoolId": "us-east-1_Qe1Ru8UWW",
+          "userPoolName": "UserPoolMerchant-qa",
+          "webClientId": "6ak7i220fadc245u8a2ot42fvb",
+          "nativeClientId": "6ak7i220fadc245u8a2ot42fvb"
+        }
+      }
+    }
+  }
+}
