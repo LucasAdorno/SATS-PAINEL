@@ -57,13 +57,14 @@ export const Td = styled.td`
 
 export const Tr = styled.tr`
   border-bottom: 1px solid #262A3D;
+  height: 80px;
 
   &:first-child {
     border-bottom: none;
   }
 `;
 
-export const Status = styled.p`
+export const StatusSuccess = styled.p`
   width: 100px;
 
   display: flex;
@@ -71,6 +72,19 @@ export const Status = styled.p`
   justify-content: center;
 
   border: 1px solid #00CF9A;
+  color: #00CF9A;
+  border-radius: 5px;
+`;
+
+export const StatusPending = styled.p`
+  width: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #FEC84B;
+  color: #FEC84B;
   border-radius: 5px;
 `;
 
@@ -81,12 +95,36 @@ export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  padding: 20px;
 
   gap: 30px;
   background: #28293D;
   border-radius: 12px;
 
   @media (min-width: 768px) {
-    width: 450px;
+    width: 580px;
   }
 `
+
+export const TextContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 30px;
+`;
+
+export const Text = styled.p`
+  width: 80%;
+
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+
+
+  color: #FFFFFF;
+`;

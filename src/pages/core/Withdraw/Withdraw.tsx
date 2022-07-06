@@ -1,4 +1,6 @@
+import { DateUtils, isStrictObject } from "@aws-amplify/core";
 import React, { useEffect, useState } from "react";
+import { BiMailSend } from "react-icons/bi";
 import Modal from "react-modal";
 import { Button, Header, Select } from "../../../components";
 import { getInvoices, patchInvoices } from "../../../services/invoice";
@@ -25,6 +27,7 @@ const Withdraw: React.FC = () => {
     try {
       const { data } = await getInvoices();
       setInvoices(data);
+
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
@@ -34,6 +37,10 @@ const Withdraw: React.FC = () => {
   async function patchInvoice(eventId: string) {
     try {
       await patchInvoices(eventId);
+      closeModal();
+      // if (window !== undefined) {
+      //   location.reload();
+      // }
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
@@ -42,7 +49,7 @@ const Withdraw: React.FC = () => {
 
   useEffect(() => {
     loadInvoices();
-  }, []);
+  }, [modalIsOpen]);
 
   return (
     <S.Container>
@@ -60,9 +67,11 @@ const Withdraw: React.FC = () => {
               <S.Td>{item?.clientFullName}</S.Td>
               <S.Td>{item?.clientEmail}</S.Td>
               <S.Td>
-                <S.Status>
-                  {item?.exchangeHasWithdraw === true ? "enviado" : "pendente"}
-                </S.Status>
+                {item?.exchangeHasWithdraw ? (
+                  <S.StatusSuccess>enviado</S.StatusSuccess>
+                ) : (
+                  <S.StatusPending>pendente</S.StatusPending>
+                )}
               </S.Td>
               <S.Td>{item?.clientPixKey}</S.Td>
               <S.Td>
@@ -85,27 +94,32 @@ const Withdraw: React.FC = () => {
                 className="react-modal-content"
               >
                 <S.ButtonContainer>
-                  {/* <S.TextContainer>
-                    <S.Text>Você efetuou o pagamento e gostaria de finalizar a solicitação de saque do cliente {item?.clientFullName}?</S.Text>
-                  </S.TextContainer> */}
-                  <Button
-                    onClick={closeModal}
-                    title="Cancelar"
-                    style={{
-                      maxWidth: "124px",
-                      background: "#28293D !important",
-                      border: "1px solid #F8B44F",
-                    }}
-                  />
-                  <Button
-                    onClick={() => patchInvoice(item?.eventId)}
-                    title="Confirmar"
-                    style={{
-                      maxWidth: "124px",
-                      background:
-                        "linear-gradient(270deg, rgba(250, 138, 15, 0.99) 14.26%, #F8B44F 84.62%)",
-                    }}
-                  />
+                  <S.Text>
+                    Você efetuou o pagamento e gostaria de finalizar a
+                    solicitação de saque do cliente{" "}
+                    <strong>{item?.clientFullName}</strong>?
+                  </S.Text>
+                  <S.TextContainer>
+                    <Button
+                      onClick={closeModal}
+                      title="Cancelar"
+                      style={{
+                        maxWidth: "124px",
+                        background: "#28293D !important",
+                        color: "#F8B44F",
+                        border: "1px solid #F8B44F",
+                      }}
+                    />
+                    <Button
+                      onClick={() => patchInvoice(item?.eventId)}
+                      title="Confirmar"
+                      style={{
+                        maxWidth: "124px",
+                        background:
+                          "linear-gradient(270deg, rgba(250, 138, 15, 0.99) 14.26%, #F8B44F 84.62%)",
+                      }}
+                    />
+                  </S.TextContainer>
                 </S.ButtonContainer>
               </Modal>
             </S.Tr>
