@@ -65,7 +65,14 @@ const AddMerchant: React.FC = () => {
               title="SubAccountId"
             />
 
-            <Button title="Adicionar" onClick={() => props.handleSubmit()} />
+            <Button
+              title="Adicionar"
+              onClick={() => props.handleSubmit()}
+              style={{
+                background:
+                  "linear-gradient(270deg, rgba(250, 138, 15, 0.99) 14.26%, #F8B44F 84.62%)",
+              }}
+            />
           </>
         )}
       </Formik>

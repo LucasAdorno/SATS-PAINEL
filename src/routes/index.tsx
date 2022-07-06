@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Login } from "../pages/auth";
-import { Home, AddColaborator, AddMerchant } from "../pages/core";
+import { Home, AddColaborator, AddMerchant, Withdraw } from "../pages/core";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 const AppRoutes: React.FC = () => {
@@ -30,6 +30,14 @@ const AppRoutes: React.FC = () => {
           element={
             <ProtectedRoute>
               <AddMerchant />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/saques"
+          element={
+            <ProtectedRoute>
+              <Withdraw />
             </ProtectedRoute>
           }
         />

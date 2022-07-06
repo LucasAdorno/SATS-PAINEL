@@ -9,8 +9,7 @@ export const Container = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: ${({ theme }) => theme.colors.button_background_primary};
+  
   color: ${({ theme }) => theme.colors.white};
 `;
 
