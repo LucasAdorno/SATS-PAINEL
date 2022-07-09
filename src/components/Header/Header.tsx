@@ -1,9 +1,11 @@
+import { Auth } from "aws-amplify";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import * as S from "./Header.styles";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <S.Container>
       {/* <NavLink
@@ -24,6 +26,16 @@ const Header: React.FC = () => {
       >
         Saques
       </NavLink>
+
+      <button
+        style={{ color: "#fff"}}
+        onClick={async () => {
+          await Auth.signOut();
+          navigate("/home");
+        }}
+      >
+        Sair
+      </button>
     </S.Container>
   );
 };
