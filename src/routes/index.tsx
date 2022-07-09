@@ -17,7 +17,7 @@ const AppRoutes: React.FC = () => {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/colaboradores/adicionar"
           element={
             <ProtectedRoute>
@@ -32,7 +32,7 @@ const AppRoutes: React.FC = () => {
               <AddMerchant />
             </ProtectedRoute>
           }
-        />
+        /> */}
         <Route
           path="/saques"
           element={

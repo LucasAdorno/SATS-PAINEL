@@ -1,15 +1,14 @@
 {
   "authSelections": "userPoolOnly",
-  "resourceName": "satsbetaadminab162500",
+  "resourceName": "satsbetaadmin1deaa441",
   "serviceType": "imported",
   "region": "us-east-1",
-  "aliasAttributes": [
+  "usernameAttributes": [
     "email"
   ],
   "authProvidersUserPool": [],
   "requiredAttributes": [
-    "name",
-    "email"
+    "name"
   ],
   "passwordPolicyMinLength": 8,
   "passwordPolicyCharacters": [

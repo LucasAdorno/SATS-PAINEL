@@ -13,11 +13,11 @@
     },
     "categories": {
       "auth": {
-        "satsbetaadminab162500": {
-          "userPoolId": "us-east-1_Qe1Ru8UWW",
-          "userPoolName": "UserPoolMerchant-qa",
-          "webClientId": "6ak7i220fadc245u8a2ot42fvb",
-          "nativeClientId": "6ak7i220fadc245u8a2ot42fvb"
+        "satsbetaadmin1deaa441": {
+          "userPoolId": "us-east-1_qAF7wXShx",
+          "userPoolName": "UserPoolMerchant-prod",
+          "webClientId": "6rdmomtmcau7muhjatgibipfp5",
+          "nativeClientId": "6rdmomtmcau7muhjatgibipfp5"
         }
       }
     }

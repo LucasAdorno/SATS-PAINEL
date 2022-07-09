@@ -6,7 +6,7 @@ import * as S from "./Header.styles";
 const Header: React.FC = () => {
   return (
     <S.Container>
-      <NavLink
+      {/* <NavLink
         to="/empresas/adicionar"
         className={({ isActive }) => (isActive ? "active-link" : "link")}
       >
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
         className={({ isActive }) => (isActive ? "active-link" : "link")}
       >
         Colaboradores
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to="/saques"
         className={({ isActive }) => (isActive ? "active-link" : "link")}

@@ -1,21 +1,43 @@
+import { Auth } from "aws-amplify";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Header } from "../components";
-// import { useAuth } from "../hooks/useAuth";
 
-interface Props {
-  children: React.ReactNode;
+interface IProtectRoutes {
+  children: any;
 }
 
-export const ProtectedRoute: React.FC<Props> = ({ children }) => {
-  //   const { user } = useAuth();
-  //   if (!user) {
-  // user is not authenticated
-  // return <Navigate to="/" />;
-  //   }
-  return (
+const ProtectedRoute: React.FC<IProtectRoutes> = ({ children }) => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>();
+
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        const authUser = await Auth.currentAuthenticatedUser();
+        setUser(authUser);
+
+        if (authUser["custom:role"] === "Operator")
+          throw new Error("Sem permissão");
+        return Promise.resolve(true);
+      } catch (err) {
+        return Promise.reject(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    verifyUser();
+  }, []);
+
+  return !loading && !user ? (
+    <Navigate to="/" />
+  ) : (
     <>
       <Header />
       {children}
     </>
   );
 };
+
+export { ProtectedRoute };

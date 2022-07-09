@@ -13,11 +13,16 @@ export interface IInvoice {
 
 const Withdraw: React.FC = () => {
   const [invoices, setInvoices] = useState<IInvoice[]>([]);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [eventIdProps, setEventIdProps] = useState("");
+  const [userName, setUserName] = useState("");
 
-  function openModal() {
+  const openModal = (item: any) => {
+    setEventIdProps(item.eventId);
+    setUserName(item.clientFullName);
+
     setIsOpen(true);
-  }
+  };
 
   function closeModal() {
     setIsOpen(false);
@@ -38,9 +43,7 @@ const Withdraw: React.FC = () => {
     try {
       await patchInvoices(eventId);
       closeModal();
-      // if (window !== undefined) {
-      //   location.reload();
-      // }
+
       return Promise.resolve();
     } catch (error) {
       return Promise.reject(error);
@@ -48,7 +51,7 @@ const Withdraw: React.FC = () => {
   }
 
   useEffect(() => {
-    loadInvoices();
+    setInterval(() => loadInvoices(), 3000);
   }, [modalIsOpen]);
 
   return (
@@ -56,6 +59,8 @@ const Withdraw: React.FC = () => {
       <S.Table>
         <S.Tr>
           <S.Th>Client ID</S.Th>
+          <S.Th>Documento</S.Th>
+          <S.Th>Valor</S.Th>
           <S.Th>E-MAIL</S.Th>
           <S.Th>STATUS</S.Th>
           <S.Th>CHAVE PIX</S.Th>
@@ -65,6 +70,8 @@ const Withdraw: React.FC = () => {
           invoices.map((item: any, index: number) => (
             <S.Tr key={index}>
               <S.Td>{item?.clientFullName}</S.Td>
+              <S.Td>{item?.clientDocument}</S.Td>
+              <S.Td>{item?.valueCripto} BRL</S.Td>
               <S.Td>{item?.clientEmail}</S.Td>
               <S.Td>
                 {item?.exchangeHasWithdraw ? (
@@ -77,7 +84,7 @@ const Withdraw: React.FC = () => {
               <S.Td>
                 {!item?.exchangeHasWithdraw && (
                   <Button
-                    onClick={openModal}
+                    onClick={() => openModal(item)}
                     title="Confirmar"
                     style={{
                       maxWidth: "124px",
@@ -87,43 +94,44 @@ const Withdraw: React.FC = () => {
                   />
                 )}
               </S.Td>
-              <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                overlayClassName="react-modal-overlay"
-                className="react-modal-content"
-              >
-                <S.ButtonContainer>
-                  <S.Text>
-                    Você efetuou o pagamento e gostaria de finalizar a
-                    solicitação de saque do cliente{" "}
-                    <strong>{item?.clientFullName}</strong>?
-                  </S.Text>
-                  <S.TextContainer>
-                    <Button
-                      onClick={closeModal}
-                      title="Cancelar"
-                      style={{
-                        maxWidth: "124px",
-                        background: "#28293D !important",
-                        color: "#F8B44F",
-                        border: "1px solid #F8B44F",
-                      }}
-                    />
-                    <Button
-                      onClick={() => patchInvoice(item?.eventId)}
-                      title="Confirmar"
-                      style={{
-                        maxWidth: "124px",
-                        background:
-                          "linear-gradient(270deg, rgba(250, 138, 15, 0.99) 14.26%, #F8B44F 84.62%)",
-                      }}
-                    />
-                  </S.TextContainer>
-                </S.ButtonContainer>
-              </Modal>
             </S.Tr>
           ))}
+        {invoices && (
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            overlayClassName="react-modal-overlay"
+            className="react-modal-content"
+          >
+            <S.ButtonContainer>
+              <S.Text>
+                Você efetuou o pagamento e gostaria de finalizar a solicitação
+                de saque do cliente <strong>{userName}</strong>?
+              </S.Text>
+              <S.TextContainer>
+                <Button
+                  onClick={closeModal}
+                  title="Cancelar"
+                  style={{
+                    maxWidth: "124px",
+                    background: "#28293D !important",
+                    color: "#F8B44F",
+                    border: "1px solid #F8B44F",
+                  }}
+                />
+                <Button
+                  onClick={() => patchInvoice(eventIdProps)}
+                  title="Confirmar"
+                  style={{
+                    maxWidth: "124px",
+                    background:
+                      "linear-gradient(270deg, rgba(250, 138, 15, 0.99) 14.26%, #F8B44F 84.62%)",
+                  }}
+                />
+              </S.TextContainer>
+            </S.ButtonContainer>
+          </Modal>
+        )}
       </S.Table>
     </S.Container>
   );

@@ -1,6 +1,6 @@
 {
   "auth": {
-    "satsbetaadminab162500": {
+    "satsbetaadmin1deaa441": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",

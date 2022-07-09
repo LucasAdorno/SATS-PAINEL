@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import { Auth } from "aws-amplify";
@@ -17,7 +17,7 @@ const Login: React.FC = () => {
     try {
       setLoading(true);
       await Auth.signIn(email, password);
-      console.log("logou");
+      navigate("home");
       return Promise.resolve();
     } catch (error) {
       console.log(error);
@@ -27,6 +27,23 @@ const Login: React.FC = () => {
       setLoading(false);
     }
   }
+
+  async function userIsAuthenticated(): Promise<boolean> {
+    try {
+      const isLogged = await Auth.currentAuthenticatedUser();
+
+      if (isLogged) {
+        navigate("/home");
+      }
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  useEffect(() => {
+    userIsAuthenticated();
+  }, []);
 
   return (
     <Formik

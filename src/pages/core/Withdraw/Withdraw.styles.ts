@@ -9,15 +9,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  max-width: 700px;
+  /* max-width: 700px; */
 
   margin: 0 auto;
   padding: 14px;
 
-  max-width: 1440px;
+  /* max-width: 1440px; */
 
-  overflow-y: auto;
-  overflow-x: auto;
+  /* overflow-y: scroll; */
+  overflow-x: scroll;
 
   gap: 22px;
 `;
@@ -30,13 +30,12 @@ export const Table = styled.table`
   color: ${({ theme }) => theme.colors.white};
   font-weight: 300;
   font-size: 18px;
-
 `;
 
 export const Th = styled.th`
   /* border: 1px solid #999; */
   padding: 0.5rem;
-  
+
   text-align: left;
   height: 50px;
 
@@ -56,7 +55,7 @@ export const Td = styled.td`
 `;
 
 export const Tr = styled.tr`
-  border-bottom: 1px solid #262A3D;
+  border-bottom: 1px solid #262a3d;
   height: 80px;
 
   &:first-child {
@@ -71,8 +70,8 @@ export const StatusSuccess = styled.p`
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #00CF9A;
-  color: #00CF9A;
+  border: 1px solid #00cf9a;
+  color: #00cf9a;
   border-radius: 5px;
 `;
 
@@ -83,8 +82,8 @@ export const StatusPending = styled.p`
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #FEC84B;
-  color: #FEC84B;
+  border: 1px solid #fec84b;
+  color: #fec84b;
   border-radius: 5px;
 `;
 
@@ -100,13 +99,13 @@ export const ButtonContainer = styled.div`
   padding: 20px;
 
   gap: 30px;
-  background: #28293D;
+  background: #28293d;
   border-radius: 12px;
 
   @media (min-width: 768px) {
     width: 580px;
   }
-`
+`;
 
 export const TextContainer = styled.div`
   width: 100%;
@@ -125,6 +124,5 @@ export const Text = styled.p`
   font-size: 18px;
   line-height: 120%;
 
-
-  color: #FFFFFF;
+  color: #ffffff;
 `;
