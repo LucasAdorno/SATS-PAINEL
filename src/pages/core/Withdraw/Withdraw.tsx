@@ -1,8 +1,6 @@
-import { DateUtils, isStrictObject } from "@aws-amplify/core";
 import React, { useEffect, useState } from "react";
-import { BiMailSend } from "react-icons/bi";
 import Modal from "react-modal";
-import { Button, Header, Select } from "../../../components";
+import { Button } from "../../../components";
 import { getInvoices, patchInvoices } from "../../../services/invoice";
 
 import * as S from "./Withdraw.styles";
